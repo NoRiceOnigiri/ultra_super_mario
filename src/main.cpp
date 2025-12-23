@@ -45,33 +45,36 @@ int main(int argc, char* argv[]) {
 	test_window.set_game_map(game_map);
     test_window.show();
 
-	// biv::os::UserInput user_input;
+	std::string user_input;
 	do {
 		// 2. Получение пользовательского ввода	
 		QCoreApplication::processEvents();
-		// user_input = biv::os::get_user_input();
-		// switch (user_input) {
-			// case biv::os::UserInput::MAP_LEFT:
-			// 	mario->move_map_left();
-			// 	if (!game.check_static_collisions(mario)) {
-			// 		game.move_map_left();
-			// 	}
-			// 	mario->move_map_right();
-			// 	break;
-			// case biv::os::UserInput::MAP_RIGHT:
-			// 	mario->move_map_right();
-			// 	if (!game.check_static_collisions(mario)) {
-			// 		game.move_map_right();
-			// 	}
-		// 		mario->move_map_left();
-		// 		break;
-		// 	case biv::os::UserInput::MARIO_JUMP:
-		// 		mario->jump();
-		// 		break;
-		// 	case biv::os::UserInput::EXIT:
-		// 		game.finish();
-		// 		break;
-		// }
+		user_input = test_window.get_last_pressed_key();
+
+		// case biv::os::UserInput::MAP_LEFT:
+		if (user_input == "D") {
+			mario->move_map_left();
+			if (!game.check_static_collisions(mario)) {
+				game.move_map_left();
+			}
+			mario->move_map_right();
+		}
+		// case biv::os::UserInput::MAP_RIGHT:
+		else if (user_input == "A") {
+			mario->move_map_right();
+			if (!game.check_static_collisions(mario)) {
+				game.move_map_right();
+			}
+			mario->move_map_left();
+		}
+		// case biv::os::UserInput::MARIO_JUMP:
+		else if (user_input == "Space") {
+			mario->jump();
+		}
+		// case biv::os::UserInput::EXIT:
+		else if (user_input == "Esc") {
+			game.finish();
+		}
 		
 		// 3. Обновление внутреннего состояния игры
 		game.move_objs_horizontally();

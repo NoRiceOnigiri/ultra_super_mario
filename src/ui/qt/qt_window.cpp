@@ -70,6 +70,24 @@ void SuperMarioWindow::refresh_image() {
     this->update(); 
 }
 
+void SuperMarioWindow::keyPressEvent(QKeyEvent *event) {
+    if (event->key() == Qt::Key_A) {
+        last_pressed_key = "A";
+    } else if (event->key() == Qt::Key_D) {
+        last_pressed_key = "D";
+    } else if (event->key() == Qt::Key_Space) {
+        last_pressed_key = "Space";
+    } else if (event->key() == Qt::Key_Escape) {
+        last_pressed_key = "Esc";
+    }
+}
+
+std::string SuperMarioWindow::get_last_pressed_key() {
+    std::string to_return = last_pressed_key;
+    last_pressed_key = "";
+    return to_return;
+}
+
 void SuperMarioWindow::paintEvent(QPaintEvent *event) {
     QPainter painter(this);
 

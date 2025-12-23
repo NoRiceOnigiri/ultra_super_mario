@@ -15,8 +15,10 @@ namespace biv {
 
             void set_game_map(QtGameMap* game_map);
             void refresh_image();
+
+            std::string get_last_pressed_key();
         protected:
-            // void keyPressEvent(QKeyEvent *event) override;
+            void keyPressEvent(QKeyEvent *event) override;
             void paintEvent(QPaintEvent *event) override;
         private:
             QtGameMap* game_map;
@@ -24,5 +26,6 @@ namespace biv {
             int height;
             int width;
             QImage image;
+            std::string last_pressed_key = "";
     };
 }
