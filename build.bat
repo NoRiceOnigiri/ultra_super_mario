@@ -16,3 +16,5 @@ cmake -G %BUILD_TYPE% ..\%SOURCE_FOLDER%
 cmake --build .
 
 cd ..
+
+pause

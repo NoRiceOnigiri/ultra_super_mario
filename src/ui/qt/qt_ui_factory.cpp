@@ -1,6 +1,6 @@
 #include "qt_ui_factory.hpp"
 
-using nro::QtUIFactory;
+using biv::QtUIFactory;
 
 QtUIFactory::QtUIFactory(Game* game) : UIFactory(game) {
 	create_game_map();
@@ -88,11 +88,11 @@ void QtUIFactory::create_ship(
 	game_map->add_obj(ship);
 }
 
-nro::GameMap* QtUIFactory::get_game_map() {
+biv::GameMap* QtUIFactory::get_game_map() {
 	return game_map;
 }
 
-nro::Mario* QtUIFactory::get_mario() {
+biv::Mario* QtUIFactory::get_mario() {
 	return mario;
 }
 

@@ -5,7 +5,7 @@
 #include "game_map.hpp"
 #include "qt_ui_obj.hpp"
 
-namespace nro {
+namespace biv {
 	class QtGameMap : public GameMap {
 		private:
 			char** map;

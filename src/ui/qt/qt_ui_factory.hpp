@@ -9,7 +9,7 @@
 #include "qt_ship.hpp"
 #include "ui_factory.hpp"
 
-namespace nro {
+namespace biv {
 	class QtUIFactory : public UIFactory {
 		private:
 			QtGameMap* game_map = nullptr;

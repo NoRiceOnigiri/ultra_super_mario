@@ -1,6 +1,6 @@
 #include "qt_full_box.hpp"
 
-using nro::QtFullBox;
+using biv::QtFullBox;
 
 QtFullBox::QtFullBox(
 	const Coord& top_left, 

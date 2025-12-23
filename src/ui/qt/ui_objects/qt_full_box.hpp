@@ -3,7 +3,7 @@
 #include "qt_ui_obj_rect_adapter.hpp"
 #include "full_box.hpp"
 
-namespace nro {
+namespace biv {
 	class QtFullBox : public FullBox, public QtUIObjectRectAdapter {
 		public:
 			QtFullBox(

@@ -2,7 +2,7 @@
 
 #include "rect.hpp"
 
-namespace nro {
+namespace biv {
 	class QtUIObject {
 		public:
 			virtual int get_bottom() const noexcept = 0;

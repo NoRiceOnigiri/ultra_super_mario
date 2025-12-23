@@ -3,7 +3,7 @@
 #include "qt_ui_obj.hpp"
 #include "rect.hpp"
 
-namespace nro {
+namespace biv {
 	class QtUIObjectRectAdapter : virtual public Rect, public QtUIObject {
 		public:
 			QtUIObjectRectAdapter() = default;

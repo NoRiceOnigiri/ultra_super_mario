@@ -4,7 +4,7 @@
 #include <cstdio>
 #include <iostream>
 
-using nro::QtGameMap;
+using biv::QtGameMap;
 
 QtGameMap::QtGameMap(const int height, const int width) 
 	: GameMap(height, width) {
