@@ -24,7 +24,19 @@
 #include "ui_factory.hpp"
 #include "user_input.hpp"
 
-int main() {
+#include <QApplication>
+#include "qt_window.hpp"
+
+int test_launch(int argc, char* argv[]) {
+	QApplication app(argc, argv);
+	biv::SuperMarioWindow test_window;
+    test_window.show();
+    return app.exec();
+}
+
+int main(int argc, char* argv[]) {
+	test_launch(argc, argv);
+
 	// 1. Установка параметров игры
 	using namespace std::chrono_literals;
 	biv::os::init_settings();
@@ -101,5 +113,4 @@ int main() {
 	);
 	
 	// 6. Завершение
-	
 }

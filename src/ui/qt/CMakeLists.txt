@@ -3,6 +3,7 @@ target_sources(${PROJECT_NAME}
 		qt_game_map.cpp
 		qt_ui_factory.cpp
 		qt_ui_obj_rect_adapter.cpp
+		qt_window.cpp
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE
