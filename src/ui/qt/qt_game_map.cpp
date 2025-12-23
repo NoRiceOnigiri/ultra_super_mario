@@ -80,7 +80,17 @@ void QtGameMap::remove_objs() {
 }
 
 void QtGameMap::show() const noexcept {
-	for (int i = 0; i < height; i++) {
-		std::cout << map[i];
-	}
+
+}
+
+char** QtGameMap::get_map() {
+	return map;
+}
+
+int QtGameMap::get_height() {
+	return height;
+}
+
+int QtGameMap::get_width() {
+	return width;
 }

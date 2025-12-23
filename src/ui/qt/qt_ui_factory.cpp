@@ -88,7 +88,7 @@ void QtUIFactory::create_ship(
 	game_map->add_obj(ship);
 }
 
-biv::GameMap* QtUIFactory::get_game_map() {
+biv::QtGameMap* QtUIFactory::get_game_map() {
 	return game_map;
 }
 

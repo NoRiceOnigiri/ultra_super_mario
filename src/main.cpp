@@ -14,7 +14,7 @@
 */
 #include <thread>
 
-#include "console_ui_factory.hpp"
+#include "qt_ui_factory.hpp"
 #include "first_level.hpp"
 #include "game.hpp"
 #include "game_level.hpp"
@@ -27,52 +27,51 @@
 #include <QApplication>
 #include "qt_window.hpp"
 
-int test_launch(int argc, char* argv[]) {
-	QApplication app(argc, argv);
-	biv::SuperMarioWindow test_window;
-    test_window.show();
-    return app.exec();
-}
 
 int main(int argc, char* argv[]) {
-	test_launch(argc, argv);
-
 	// 1. Установка параметров игры
 	using namespace std::chrono_literals;
 	biv::os::init_settings();
 	
 	biv::Game game;
-	biv::UIFactory* ui_factory = new biv::ConsoleUIFactory(&game);
-	biv::GameMap* game_map = ui_factory->get_game_map();
+	biv::QtUIFactory* ui_factory = new biv::QtUIFactory(&game);
+	biv::QtGameMap* game_map = ui_factory->get_game_map();
 	biv::GameLevel* game_level = new biv::FirstLevel(ui_factory);
 	biv::Mario* mario = ui_factory->get_mario();
-	
-	biv::os::UserInput user_input;
+
+	// Открытие интерфейса
+	QApplication app(argc, argv);
+	biv::SuperMarioWindow test_window;
+	test_window.set_game_map(game_map);
+    test_window.show();
+
+	// biv::os::UserInput user_input;
 	do {
 		// 2. Получение пользовательского ввода	
-		user_input = biv::os::get_user_input();
-		switch (user_input) {
-			case biv::os::UserInput::MAP_LEFT:
-				mario->move_map_left();
-				if (!game.check_static_collisions(mario)) {
-					game.move_map_left();
-				}
-				mario->move_map_right();
-				break;
-			case biv::os::UserInput::MAP_RIGHT:
-				mario->move_map_right();
-				if (!game.check_static_collisions(mario)) {
-					game.move_map_right();
-				}
-				mario->move_map_left();
-				break;
-			case biv::os::UserInput::MARIO_JUMP:
-				mario->jump();
-				break;
-			case biv::os::UserInput::EXIT:
-				game.finish();
-				break;
-		}
+		QCoreApplication::processEvents();
+		// user_input = biv::os::get_user_input();
+		// switch (user_input) {
+			// case biv::os::UserInput::MAP_LEFT:
+			// 	mario->move_map_left();
+			// 	if (!game.check_static_collisions(mario)) {
+			// 		game.move_map_left();
+			// 	}
+			// 	mario->move_map_right();
+			// 	break;
+			// case biv::os::UserInput::MAP_RIGHT:
+			// 	mario->move_map_right();
+			// 	if (!game.check_static_collisions(mario)) {
+			// 		game.move_map_right();
+			// 	}
+		// 		mario->move_map_left();
+		// 		break;
+		// 	case biv::os::UserInput::MARIO_JUMP:
+		// 		mario->jump();
+		// 		break;
+		// 	case biv::os::UserInput::EXIT:
+		// 		game.finish();
+		// 		break;
+		// }
 		
 		// 3. Обновление внутреннего состояния игры
 		game.move_objs_horizontally();
@@ -105,11 +104,12 @@ int main(int argc, char* argv[]) {
 		// 4. Обновление изображения на экране
 		game_map->refresh();
 		biv::os::set_cursor_start_position();
-		game_map->show();
+		// game_map->show();
+		test_window.refresh_image();
 		std::this_thread::sleep_for(10ms);
 	} while (
 		/* 5. Проверка того, не окончена ли игра */ 
-		!game.is_finished()
+		!game.is_finished() && test_window.isVisible()
 	);
 	
 	// 6. Завершение

@@ -11,7 +11,7 @@ namespace biv {
 			char** map;
 			
 			std::vector<QtUIObject*> objs;
-			
+
 		public:
 			QtGameMap(const int height, const int width);
 			~QtGameMap();
@@ -22,5 +22,10 @@ namespace biv {
 			void remove_obj(QtUIObject*);
 			void remove_objs() override;
 			void show() const noexcept override;
+
+			char** get_map();
+
+			int get_height();
+			int get_width();
 	};
 }

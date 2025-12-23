@@ -42,7 +42,7 @@ namespace biv {
 			void create_ship(
 				const Coord& top_left, const int width, const int height
 			) override;
-			GameMap* get_game_map() override;
+			QtGameMap* get_game_map();
 			Mario* get_mario() override;
 			
 		private:

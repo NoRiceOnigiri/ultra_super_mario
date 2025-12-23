@@ -1,19 +1,28 @@
 #pragma once
 
+#include "qt_game_map.hpp"
 #include <QMainWindow>
 #include <QLabel>
+#include <QImage>
 #include <QVBoxLayout>
 #include <QKeyEvent>
 
 namespace biv {
     class SuperMarioWindow : public QMainWindow {
+        Q_OBJECT
         public:
             SuperMarioWindow(QWidget *parent = nullptr);
+
+            void set_game_map(QtGameMap* game_map);
+            void refresh_image();
         protected:
-            void keyPressEvent(QKeyEvent *event) override;
+            // void keyPressEvent(QKeyEvent *event) override;
+            void paintEvent(QPaintEvent *event) override;
         private:
-            int score = 0;
-            QLabel *label;
-            void updateDisplay();
+            QtGameMap* game_map;
+
+            int height;
+            int width;
+            QImage image;
     };
 }
